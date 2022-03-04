@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">MediaLab Android Engineer</string>
+    <string name="user_item_bio_example">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sapien risus, elementum vel lorem ut, tempor pharetra sapien. Nunc tempor et.</string>
+    <string name="user_item_name_example">Juan Sanmiguel</string>
+    <string name="user_item_avatar_content_description">User item avatar</string>
 </resources>
