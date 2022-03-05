@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="viewModel"
+            type="sanmi.labs.medialabandroidengineer.feature_user.presentation.view_model.UserProfileViewModel" />
     </data>
 
     <ScrollView
@@ -59,7 +62,8 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/name" />
+                    android:hint="@string/name"
+                    android:text="@{viewModel.user.name}"/>
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -79,7 +83,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="top"
                     android:hint="@string/biography"
-                    android:lines="6" />
+                    android:lines="6"
+                    android:text="@{viewModel.user.biography}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
