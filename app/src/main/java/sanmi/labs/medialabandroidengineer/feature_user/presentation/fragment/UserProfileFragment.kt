@@ -26,26 +26,28 @@ class UserProfileFragment : Fragment() {
     private val userListViewModel: UserListViewModel by sharedViewModel()
     private val args: UserProfileFragmentArgs by navArgs()
 
-    private val startForProfileImageResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-        val resultCode = result.resultCode
-        val data = result.data
+    private val startForProfileImageResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val resultCode = result.resultCode
+            val data = result.data
 
-        when (resultCode) {
-            Activity.RESULT_OK -> {
-                //Image Uri will not be null for RESULT_OK
-                val fileUri = data?.data!!
+            when (resultCode) {
+                Activity.RESULT_OK -> {
+                    //Image Uri will not be null for RESULT_OK
+                    val fileUri = data?.data!!
 
-                viewModel.setUserImage(fileUri.toString())
-                binding.imageView.setImageURI(fileUri)
-            }
-            ImagePicker.RESULT_ERROR -> {
-                Toast.makeText(requireContext(), ImagePicker.getError(data), Toast.LENGTH_SHORT).show()
-            }
-            else -> {
-                Toast.makeText(requireContext(), "Task Cancelled", Toast.LENGTH_SHORT).show()
+                    viewModel.setUserImage(fileUri.toString())
+                    binding.imageView.setImageURI(fileUri)
+                }
+                ImagePicker.RESULT_ERROR -> {
+                    Toast.makeText(requireContext(), ImagePicker.getError(data), Toast.LENGTH_SHORT)
+                        .show()
+                }
+                else -> {
+                    Toast.makeText(requireContext(), "Task Cancelled", Toast.LENGTH_SHORT).show()
+                }
             }
         }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,6 +56,7 @@ class UserProfileFragment : Fragment() {
     ): View {
         binding = UserProfileFragmentBinding.inflate(layoutInflater)
         setUpUi()
+        subscribeUi()
         return binding.root
     }
 
@@ -78,16 +81,27 @@ class UserProfileFragment : Fragment() {
         setHasOptionsMenu(true)
     }
 
+    private fun subscribeUi() {
+        viewModel.nameEditTextError.observe(viewLifecycleOwner) {
+            it?.let {
+                binding.userProfileFragmentNameTextInputEditText.error =
+                    it.asString(requireContext())
+            }
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.user_profile_save_menu, menu)
         super.onCreateOptionsMenu(menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
+        when (item.itemId) {
             R.id.user_profile_save_menu_save -> {
-                userListViewModel.saveUser(viewModel.getSelectedUser())
-                findNavController().navigateUp()
+                if (viewModel.isFormComplete()) {
+                    userListViewModel.saveUser(viewModel.getSelectedUser())
+                    findNavController().navigateUp()
+                }
             }
             else -> findNavController().navigateUp()
         }

@@ -30,6 +30,6 @@ val appModule = module {
     }
 
     viewModel {
-        UserProfileViewModel(get())
+        UserProfileViewModel()
     }
 }
