@@ -40,8 +40,8 @@ class UserListViewModel : ViewModel() {
         _users.value = usersList
     }
 
-    fun removeUser(user: User) {
-        usersList.removeAt(usersList.indexOf(usersList.first { it.id == user.id }))
+    fun removeUser(position: Int) {
+        usersList.removeAt(position)
         _users.value = usersList
     }
 

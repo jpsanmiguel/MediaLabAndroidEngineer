@@ -14,7 +14,8 @@ import sanmi.labs.medialabandroidengineer.feature_user.domain.model.User
 import sanmi.labs.medialabandroidengineer.feature_user.presentation.adapter.UserAdapter
 import sanmi.labs.medialabandroidengineer.feature_user.presentation.view_model.UserListViewModel
 import androidx.recyclerview.widget.RecyclerView
-import sanmi.labs.medialabandroidengineer.feature_user.presentation.adapter.view_holder.UserViewHolder
+import sanmi.labs.medialabandroidengineer.R
+import sanmi.labs.medialabandroidengineer.feature_user.util.CustomDividerItemDecorator
 
 
 class UserListFragment : Fragment() {
@@ -22,6 +23,8 @@ class UserListFragment : Fragment() {
     private val viewModel: UserListViewModel by sharedViewModel()
 
     private lateinit var binding: UserListFragmentBinding
+
+    private lateinit var userAdapter: UserAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,13 +41,19 @@ class UserListFragment : Fragment() {
         binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
-        binding.userListFragmentRecyclerView.adapter = UserAdapter(UserAdapter.OnClickListener {
-            viewModel.navigateToSelectedUser(it)
-        })
-
         binding.userListFragmentAddNewUserButton.setOnClickListener {
             viewModel.navigateToSelectedUser(User())
         }
+
+        setUpRecyclerView()
+    }
+
+    private fun setUpRecyclerView() {
+        userAdapter = UserAdapter(UserAdapter.OnClickListener {
+            viewModel.navigateToSelectedUser(it)
+        })
+
+        binding.userListFragmentRecyclerView.adapter = userAdapter
 
         val itemTouchHelper = ItemTouchHelper(object :
             ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT) {
@@ -57,11 +66,16 @@ class UserListFragment : Fragment() {
             }
 
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, swipeDir: Int) {
-                viewModel.removeUser((viewHolder as UserViewHolder).user)
+                viewModel.removeUser(viewHolder.adapterPosition)
+                userAdapter.notifyDataSetChanged()
             }
         })
 
         itemTouchHelper.attachToRecyclerView(binding.userListFragmentRecyclerView)
+
+        binding.userListFragmentRecyclerView.addItemDecoration(
+            CustomDividerItemDecorator(R.drawable.divider)
+        )
     }
 
     private fun subscribeUi() {

@@ -16,7 +16,7 @@ class UserProfileViewModel(
         get() = _user
 
     fun initViewModel(user: User) {
-        _user.value = user
+        _user.value = user.copy()
     }
 
     fun setUserImage(imageUri: String) {

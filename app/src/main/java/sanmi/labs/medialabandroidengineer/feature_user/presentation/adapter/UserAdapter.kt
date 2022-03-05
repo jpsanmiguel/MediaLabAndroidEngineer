@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.ListAdapter
 import sanmi.labs.medialabandroidengineer.feature_user.domain.model.User
 import sanmi.labs.medialabandroidengineer.feature_user.presentation.adapter.view_holder.UserViewHolder
 
-class UserAdapter(val onClickListener: OnClickListener) : ListAdapter<User, UserViewHolder>(UserItemDiffCallback) {
+class UserAdapter(private val onClickListener: OnClickListener) : ListAdapter<User, UserViewHolder>(UserItemDiffCallback) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UserViewHolder {
         return UserViewHolder.from(parent)
     }
