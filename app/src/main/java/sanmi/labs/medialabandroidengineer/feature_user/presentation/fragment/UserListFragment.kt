@@ -1,12 +1,12 @@
 package sanmi.labs.medialabandroidengineer.feature_user.presentation.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import sanmi.labs.medialabandroidengineer.databinding.UserListFragmentBinding
 import sanmi.labs.medialabandroidengineer.feature_user.presentation.adapter.UserAdapter
 import sanmi.labs.medialabandroidengineer.feature_user.presentation.view_model.UserListViewModel
@@ -35,13 +35,16 @@ class UserListFragment : Fragment() {
         binding.lifecycleOwner = viewLifecycleOwner
 
         binding.userListFragmentRecyclerView.adapter = UserAdapter(UserAdapter.OnClickListener {
-            Log.d("UserListFragment", "Clicked on user ${it.name}")
+            viewModel.navigateToSelectedUser(it)
         })
     }
 
     private fun subscribeUi() {
-        viewModel.users.observe(viewLifecycleOwner) {
-            Log.d("UserListFragment", "Loaded ${it.size} users!")
+        viewModel.navigateToSelectedUser.observe(viewLifecycleOwner) {
+            it?.let {
+                findNavController().navigate(UserListFragmentDirections.actionUserListFragmentToUserProfileFragment())
+                viewModel.finishedNavigateToSelectedUser()
+            }
         }
     }
 }
