@@ -1,5 +1,6 @@
 package sanmi.labs.medialabandroidengineer.feature_user.util
 
+import android.view.View
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
@@ -8,6 +9,15 @@ import androidx.recyclerview.widget.RecyclerView
 import sanmi.labs.medialabandroidengineer.R
 import sanmi.labs.medialabandroidengineer.feature_user.domain.model.User
 import sanmi.labs.medialabandroidengineer.feature_user.presentation.adapter.UserAdapter
+
+@BindingAdapter("showViewIfCondition")
+fun bindShowViewIfCondition(view: View, condition: Boolean) {
+    view.visibility = if (condition) {
+        View.VISIBLE
+    } else {
+        View.INVISIBLE
+    }
+}
 
 @BindingAdapter("userList")
 fun bindUserListToRecyclerView(recyclerView: RecyclerView, userList: List<User>?) {

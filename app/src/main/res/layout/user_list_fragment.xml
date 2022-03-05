@@ -17,6 +17,7 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/user_list_fragment_recycler_view"
+            showViewIfCondition="@{!viewModel.users.empty}"
             userList="@{viewModel.users}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -37,6 +38,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:srcCompat="@drawable/ic_baseline_add_24" />
+
+        <TextView
+            android:id="@+id/user_list_fragment_empty_list_text_view"
+            showViewIfCondition="@{viewModel.users.empty}"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="32dp"
+            android:layout_height="wrap_content"
+            android:text="@string/empty_users_text"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
