@@ -15,5 +15,7 @@ fun bindUserListToRecyclerView(recyclerView: RecyclerView, userList: List<User>?
 
 @BindingAdapter("imageUriString")
 fun bindImageUriStringToImageView(imageView: ImageView, imageUri: String) {
-    imageView.setImageURI(imageUri.toUri())
+    if (imageUri.isNotBlank()) {
+        imageView.setImageURI(imageUri.toUri())
+    }
 }

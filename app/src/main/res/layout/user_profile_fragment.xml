@@ -35,7 +35,7 @@
                     android:layout_height="match_parent"
                     android:contentDescription="@string/user_item_avatar_content_description"
                     android:scaleType="fitCenter"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    app:srcCompat="@drawable/ic_baseline_person_24" />
             </androidx.cardview.widget.CardView>
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -94,11 +94,11 @@
                     android:afterTextChanged="@{viewModel::setUserBiography}"
                     android:gravity="top"
                     android:hint="@string/biography"
+                    android:inputType="text|textMultiLine"
                     android:lines="4"
                     android:maxLength="140"
                     android:maxLines="4"
                     android:minLines="4"
-                    android:inputType="text|textMultiLine"
                     android:text="@{viewModel.user.biography}" />
 
             </com.google.android.material.textfield.TextInputLayout>

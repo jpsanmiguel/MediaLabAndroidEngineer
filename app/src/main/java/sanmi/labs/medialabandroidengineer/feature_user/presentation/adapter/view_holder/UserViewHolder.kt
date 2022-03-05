@@ -16,9 +16,6 @@ class UserViewHolder private constructor(
     fun bind(user: User) {
         this.user = user
         binding.user = user
-
-        binding.userItemAvatar.setImageURI(user.imageUri.toUri())
-
         binding.executePendingBindings()
     }
 
