@@ -30,6 +30,7 @@
 
                 <ImageView
                     android:id="@+id/imageView"
+                    imageUriString="@{viewModel.user.imageUri}"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@string/user_item_avatar_content_description"
@@ -46,7 +47,7 @@
                 android:focusable="true"
                 app:layout_constraintBottom_toBottomOf="@+id/cardView"
                 app:layout_constraintEnd_toEndOf="@+id/cardView"
-                app:srcCompat="@android:drawable/ic_menu_camera" />
+                app:srcCompat="@drawable/ic_baseline_add_a_photo_24" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/user_profile_fragment_name_text_input_layout"
@@ -62,8 +63,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:afterTextChanged="@{viewModel::setUserName}"
                     android:hint="@string/name"
-                    android:text="@{viewModel.user.name}"/>
+                    android:text="@{viewModel.user.name}" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,6 +83,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:afterTextChanged="@{viewModel::setUserBiography}"
                     android:gravity="top"
                     android:hint="@string/biography"
                     android:lines="6"

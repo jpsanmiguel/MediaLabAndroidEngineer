@@ -27,6 +27,7 @@
 
             <ImageView
                 android:id="@+id/user_item_avatar"
+                imageUriString="@{user.imageUri}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/user_item_avatar_content_description"

@@ -12,6 +12,8 @@ class UserListViewModel : ViewModel() {
     val status: LiveData<Status>
         get() = _status
 
+    private val usersList = mutableListOf<User>()
+
     private val _users = MutableLiveData<List<User>>(emptyList())
     val users: LiveData<List<User>>
         get() = _users
@@ -20,37 +22,30 @@ class UserListViewModel : ViewModel() {
     val navigateToSelectedUser: LiveData<User?>
         get() = _navigateToSelectedUser
 
-    init {
-        _users.value = listOf(
-            User("1", "", "Juan Sanmiguel", "This is my biography."),
-            User("2", "", "Juan Sanmiguel", "This is my biography."),
-            User("3", "", "Juan Sanmiguel", "This is my biography."),
-            User("4", "", "Juan Sanmiguel", "This is my biography."),
-            User("5", "", "Juan Sanmiguel", "This is my biography."),
-            User("6", "", "Juan Sanmiguel", "This is my biography."),
-            User("7", "", "Juan Sanmiguel", "This is my biography."),
-            User("8", "", "Juan Sanmiguel", "This is my biography."),
-            User("9", "", "Juan Sanmiguel", "This is my biography."),
-            User("10", "", "Juan Sanmiguel", "This is my biography."),
-            User("11", "", "Juan Sanmiguel", "This is my biography."),
-            User("12", "", "Juan Sanmiguel", "This is my biography."),
-            User("13", "", "Juan Sanmiguel", "This is my biography."),
-            User("14", "", "Juan Sanmiguel", "This is my biography."),
-            User("15", "", "Juan Sanmiguel", "This is my biography."),
-            User("16", "", "Juan Sanmiguel", "This is my biography."),
-            User("17", "", "Juan Sanmiguel", "This is my biography."),
-            User("18", "", "Juan Sanmiguel", "This is my biography."),
-            User("19", "", "Juan Sanmiguel", "This is my biography."),
-            User("20", "", "Juan Sanmiguel", "This is my biography."),
-        )
-    }
-
     fun navigateToSelectedUser(user: User) {
         _navigateToSelectedUser.value = user
     }
 
     fun finishedNavigateToSelectedUser() {
         _navigateToSelectedUser.value = null
+    }
+
+    fun saveUser(userUpdated: User) {
+        val existingUser = _users.value?.firstOrNull { it.id == userUpdated.id }
+        if (existingUser != null) {
+            updateUser(existingUser, userUpdated)
+        } else {
+            usersList.add(userUpdated)
+        }
+        _users.value = usersList
+    }
+
+    private fun updateUser(user: User, userUpdated: User) {
+        if (user.id == userUpdated.id) {
+            user.imageUri = userUpdated.imageUri
+            user.name = userUpdated.name
+            user.biography = userUpdated.biography
+        }
     }
 
 }

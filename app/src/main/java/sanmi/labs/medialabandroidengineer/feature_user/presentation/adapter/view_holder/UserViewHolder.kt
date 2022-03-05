@@ -2,6 +2,7 @@ package sanmi.labs.medialabandroidengineer.feature_user.presentation.adapter.vie
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import sanmi.labs.medialabandroidengineer.databinding.UserItemBinding
 import sanmi.labs.medialabandroidengineer.feature_user.domain.model.User
@@ -12,6 +13,9 @@ class UserViewHolder private constructor(
 
     fun bind(user: User) {
         binding.user = user
+
+        binding.userItemAvatar.setImageURI(user.imageUri.toUri())
+
         binding.executePendingBindings()
     }
 

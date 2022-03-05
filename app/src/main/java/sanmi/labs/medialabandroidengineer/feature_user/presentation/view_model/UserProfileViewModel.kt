@@ -1,5 +1,6 @@
 package sanmi.labs.medialabandroidengineer.feature_user.presentation.view_model
 
+import android.text.Editable
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -20,5 +21,17 @@ class UserProfileViewModel(
 
     fun setUserImage(imageUri: String) {
         _user.value?.imageUri = imageUri
+    }
+
+    fun setUserName(name: Editable) {
+        _user.value?.name = name.toString()
+    }
+
+    fun setUserBiography(biography: Editable) {
+        _user.value?.biography = biography.toString()
+    }
+
+    fun getSelectedUser(): User {
+        return _user.value ?: User()
     }
 }

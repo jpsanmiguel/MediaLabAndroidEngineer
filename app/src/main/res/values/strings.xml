@@ -6,4 +6,6 @@
     <string name="user_profile_add_photo_button_content_description">Add new avatar button</string>
     <string name="name">Name</string>
     <string name="biography">Biography</string>
+    <string name="save">Save</string>
+    <string name="add_user_floating_action_button">Add user floating action button.</string>
 </resources>
