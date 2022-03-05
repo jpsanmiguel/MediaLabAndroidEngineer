@@ -7,8 +7,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import sanmi.labs.medialabandroidengineer.feature_user.domain.model.User
+import sanmi.labs.medialabandroidengineer.feature_user.domain.use_case.UserUseCases
 
 class UserProfileViewModel(
+    private val userUseCases: UserUseCases,
 ) : ViewModel() {
 
     private val _user = MutableLiveData<User>()

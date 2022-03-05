@@ -15,6 +15,7 @@ import sanmi.labs.medialabandroidengineer.feature_user.presentation.adapter.User
 import sanmi.labs.medialabandroidengineer.feature_user.presentation.view_model.UserListViewModel
 import androidx.recyclerview.widget.RecyclerView
 import sanmi.labs.medialabandroidengineer.R
+import sanmi.labs.medialabandroidengineer.feature_user.presentation.adapter.view_holder.UserViewHolder
 import sanmi.labs.medialabandroidengineer.feature_user.util.CustomDividerItemDecorator
 
 
