@@ -74,10 +74,6 @@ class UserProfileFragment : Fragment() {
                 }
         }
 
-        binding.userProfileFragmentBiographyTextInputEditText.setOnKeyListener { view, _, _ ->
-            (view as EditText).lineCount <= 4
-        }
-
         setHasOptionsMenu(true)
     }
 
