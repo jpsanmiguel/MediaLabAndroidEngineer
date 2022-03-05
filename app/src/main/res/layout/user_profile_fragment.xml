@@ -67,7 +67,7 @@
                     android:layout_height="wrap_content"
                     android:afterTextChanged="@{viewModel::setUserName}"
                     android:hint="@string/name"
-                    android:inputType="text"
+                    android:inputType="textCapWords"
                     android:maxLength="40"
                     android:maxLines="1"
                     android:text="@{viewModel.user.name}" />
@@ -94,7 +94,7 @@
                     android:afterTextChanged="@{viewModel::setUserBiography}"
                     android:gravity="top"
                     android:hint="@string/biography"
-                    android:inputType="text|textMultiLine"
+                    android:inputType="textCapSentences|textMultiLine"
                     android:lines="4"
                     android:maxLength="140"
                     android:maxLines="4"
