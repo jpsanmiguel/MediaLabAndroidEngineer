@@ -17,4 +17,8 @@ class UserProfileViewModel(
     fun initViewModel(user: User) {
         _user.value = user
     }
+
+    fun setUserImage(imageUri: String) {
+        _user.value?.imageUri = imageUri
+    }
 }
