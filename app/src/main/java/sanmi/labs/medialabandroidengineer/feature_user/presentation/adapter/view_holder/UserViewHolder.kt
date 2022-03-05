@@ -11,7 +11,10 @@ class UserViewHolder private constructor(
     private val binding: UserItemBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
+    lateinit var user: User
+
     fun bind(user: User) {
+        this.user = user
         binding.user = user
 
         binding.userItemAvatar.setImageURI(user.imageUri.toUri())

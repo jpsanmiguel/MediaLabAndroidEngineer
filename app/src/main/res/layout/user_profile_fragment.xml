@@ -56,6 +56,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="64dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="40"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView">
@@ -65,6 +67,9 @@
                     android:layout_height="wrap_content"
                     android:afterTextChanged="@{viewModel::setUserName}"
                     android:hint="@string/name"
+                    android:inputType="text"
+                    android:maxLength="40"
+                    android:maxLines="1"
                     android:text="@{viewModel.user.name}" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -76,17 +81,24 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="16dp"
                 android:layout_marginTop="16dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="140"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/user_profile_fragment_name_text_input_layout">
 
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/user_profile_fragment_biography_text_input_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:afterTextChanged="@{viewModel::setUserBiography}"
                     android:gravity="top"
                     android:hint="@string/biography"
-                    android:lines="6"
+                    android:lines="4"
+                    android:maxLength="140"
+                    android:maxLines="4"
+                    android:minLines="4"
+                    android:inputType="text|textMultiLine"
                     android:text="@{viewModel.user.biography}" />
 
             </com.google.android.material.textfield.TextInputLayout>

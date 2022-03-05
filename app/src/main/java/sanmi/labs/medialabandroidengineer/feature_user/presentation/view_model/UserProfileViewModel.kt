@@ -24,11 +24,11 @@ class UserProfileViewModel(
     }
 
     fun setUserName(name: Editable) {
-        _user.value?.name = name.toString()
+        _user.value?.name = name.toString().trim()
     }
 
     fun setUserBiography(biography: Editable) {
-        _user.value?.biography = biography.toString()
+        _user.value?.biography = biography.toString().trim()
     }
 
     fun getSelectedUser(): User {

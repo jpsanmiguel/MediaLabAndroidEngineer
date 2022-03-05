@@ -40,6 +40,11 @@ class UserListViewModel : ViewModel() {
         _users.value = usersList
     }
 
+    fun removeUser(user: User) {
+        usersList.removeAt(usersList.indexOf(usersList.first { it.id == user.id }))
+        _users.value = usersList
+    }
+
     private fun updateUser(user: User, userUpdated: User) {
         if (user.id == userUpdated.id) {
             user.imageUri = userUpdated.imageUri

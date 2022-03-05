@@ -3,6 +3,7 @@ package sanmi.labs.medialabandroidengineer.feature_user.presentation.fragment
 import android.app.Activity
 import android.os.Bundle
 import android.view.*
+import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
@@ -68,6 +69,10 @@ class UserProfileFragment : Fragment() {
                 .createIntent {
                     startForProfileImageResult.launch(it)
                 }
+        }
+
+        binding.userProfileFragmentBiographyTextInputEditText.setOnKeyListener { view, _, _ ->
+            (view as EditText).lineCount <= 4
         }
 
         setHasOptionsMenu(true)
