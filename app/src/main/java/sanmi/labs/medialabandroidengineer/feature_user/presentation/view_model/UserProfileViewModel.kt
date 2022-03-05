@@ -10,8 +10,7 @@ import sanmi.labs.medialabandroidengineer.core.util.UiText
 import sanmi.labs.medialabandroidengineer.feature_user.domain.model.User
 import sanmi.labs.medialabandroidengineer.R
 
-class UserProfileViewModel(
-) : ViewModel() {
+class UserProfileViewModel : ViewModel() {
 
     private val _user = MutableLiveData<User>()
     val user: LiveData<User>

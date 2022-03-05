@@ -17,7 +17,7 @@ import sanmi.labs.medialabandroidengineer.util.addNUsersToRepository
 import sanmi.labs.medialabandroidengineer.util.randomUser
 
 @RunWith(JUnit4::class)
-class UserUseCases : BaseTest() {
+class UserUseCasesTest : BaseTest() {
 
     private val userRepository by inject<UserRepository>()
     private val getUsersUseCase by inject<GetUsersUseCase>()

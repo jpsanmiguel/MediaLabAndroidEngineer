@@ -5,15 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import sanmi.labs.medialabandroidengineer.feature_user.domain.model.User
 import sanmi.labs.medialabandroidengineer.feature_user.domain.use_case.UserUseCases
-import sanmi.labs.medialabandroidengineer.feature_user.util.Status
 
 class UserListViewModel(
     private val userUseCases: UserUseCases,
 ) : ViewModel() {
-
-    private val _status = MutableLiveData<Status>()
-    val status: LiveData<Status>
-        get() = _status
 
     private val _users = MutableLiveData<List<User>>()
     val users: LiveData<List<User>>
