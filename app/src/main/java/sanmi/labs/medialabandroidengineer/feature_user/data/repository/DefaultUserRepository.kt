@@ -14,9 +14,11 @@ class DefaultUserRepository : UserRepository {
         return userList.apply {
             val existingUser = firstOrNull { it.id == user.id }
             if (existingUser != null) {
-                existingUser.imageUri = user.imageUri
-                existingUser.name = user.name
-                existingUser.biography = user.biography
+                existingUser.apply {
+                    imageUri = user.imageUri
+                    name = user.name
+                    biography = user.biography
+                }
             } else {
                 add(user)
             }

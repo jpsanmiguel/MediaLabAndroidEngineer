@@ -80,10 +80,6 @@ class UserListFragment : Fragment() {
     }
 
     private fun subscribeUi() {
-        viewModel.users.observe(viewLifecycleOwner) {
-            Log.d("Users", "${it.size}")
-        }
-
         viewModel.navigateToSelectedUser.observe(viewLifecycleOwner) {
             it?.let {
                 findNavController().navigate(UserListFragmentDirections.actionUserListFragmentToUserProfileFragment(it))
