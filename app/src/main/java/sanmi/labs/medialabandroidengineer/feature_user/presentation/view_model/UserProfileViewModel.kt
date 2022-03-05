@@ -28,12 +28,20 @@ class UserProfileViewModel : ViewModel() {
         _user.value?.imageUri = imageUri
     }
 
-    fun setUserName(name: Editable) {
-        _user.value?.name = name.toString().trim()
+    fun setUserNameEditable(name: Editable) {
+        setUserName(name.toString())
     }
 
-    fun setUserBiography(biography: Editable) {
-        _user.value?.biography = biography.toString().trim()
+    fun setUserName(name: String) {
+        _user.value?.name = name.trim()
+    }
+
+    fun setUserBiographyEditable(biography: Editable) {
+        setUserBiography(biography.toString())
+    }
+
+    fun setUserBiography(biography: String) {
+        _user.value?.biography = biography.trim()
     }
 
     fun getSelectedUser(): User {

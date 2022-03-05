@@ -39,26 +39,25 @@ class UserListViewModelTest : BaseTest() {
     fun `Navigate to selected user`() = runBlocking {
         viewModel.navigateToSelectedUser.observeForever {}
 
-        val navigateToUser = randomUser()
-        viewModel.navigateToSelectedUser(navigateToUser)
+        viewModel.navigateToSelectedUser(userOne)
 
         val value = viewModel.navigateToSelectedUser.value
         assert(value != null)
+        assertEquals(value, userOne)
     }
 
     @Test
     fun `Save user with empty list`() = runBlocking {
-        val saveUser = randomUser()
 
         viewModel.users.observeForever {}
 
-        viewModel.saveUser(saveUser)
+        viewModel.saveUser(userOne)
 
         val value = viewModel.users.value
 
         assert(value != null)
         assertEquals(value?.size, 1)
-        assertEquals(value?.get(0), saveUser)
+        assertEquals(value?.get(0), userOne)
     }
 
     @Test
