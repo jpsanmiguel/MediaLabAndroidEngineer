@@ -1,4 +1,4 @@
-package sanmi.labs.medialabandroidengineer.repository
+package sanmi.labs.medialabandroidengineer.domain.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import kotlinx.coroutines.runBlocking
@@ -9,7 +9,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.JUnit4
 import org.koin.test.inject
-import sanmi.labs.medialabandroidengineer.base.BaseTest
+import sanmi.labs.medialabandroidengineer.core.base.BaseTest
 import sanmi.labs.medialabandroidengineer.feature_user.domain.repository.UserRepository
 import sanmi.labs.medialabandroidengineer.util.randomString
 import sanmi.labs.medialabandroidengineer.util.randomUser

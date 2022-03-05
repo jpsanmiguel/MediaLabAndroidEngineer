@@ -1,4 +1,4 @@
-package sanmi.labs.medialabandroidengineer.base
+package sanmi.labs.medialabandroidengineer.core.base
 
 import org.junit.After
 import org.junit.Before
