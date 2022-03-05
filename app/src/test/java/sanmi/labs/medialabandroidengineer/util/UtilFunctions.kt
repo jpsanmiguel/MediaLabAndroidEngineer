@@ -1,7 +1,25 @@
 package sanmi.labs.medialabandroidengineer.util
 
 import sanmi.labs.medialabandroidengineer.feature_user.domain.model.User
+import sanmi.labs.medialabandroidengineer.feature_user.domain.repository.UserRepository
 import kotlin.streams.asSequence
+
+fun addNUsersToRepository(userRepository: UserRepository, numOfUsers: Int) {
+    for (i in 0 until numOfUsers) {
+        userRepository.saveUser(randomUser())
+    }
+}
+
+fun addNUsersBeforeAndAfterUser(userRepository: UserRepository, numOfUsers: Int): User {
+    addNUsersToRepository(userRepository, numOfUsers)
+
+    val userSaved = randomUser()
+    userRepository.saveUser(userSaved)
+
+    addNUsersToRepository(userRepository, numOfUsers)
+
+    return userSaved
+}
 
 fun randomUser(): User {
     return User(

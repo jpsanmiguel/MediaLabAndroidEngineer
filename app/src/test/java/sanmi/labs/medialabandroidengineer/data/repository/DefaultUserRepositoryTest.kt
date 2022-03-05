@@ -1,4 +1,4 @@
-package sanmi.labs.medialabandroidengineer.domain.repository
+package sanmi.labs.medialabandroidengineer.data.repository
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import kotlinx.coroutines.runBlocking
@@ -13,7 +13,8 @@ import sanmi.labs.medialabandroidengineer.core.base.BaseTest
 import sanmi.labs.medialabandroidengineer.feature_user.domain.repository.UserRepository
 import sanmi.labs.medialabandroidengineer.util.randomString
 import sanmi.labs.medialabandroidengineer.util.randomUser
-import sanmi.labs.medialabandroidengineer.feature_user.domain.model.User
+import sanmi.labs.medialabandroidengineer.util.addNUsersBeforeAndAfterUser
+import sanmi.labs.medialabandroidengineer.util.addNUsersToRepository
 
 @RunWith(JUnit4::class)
 class DefaultUserRepositoryTest : BaseTest() {
@@ -22,23 +23,6 @@ class DefaultUserRepositoryTest : BaseTest() {
 
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
-
-    private fun addNUsersToRepository(numOfUsers: Int) {
-        for (i in 0 until numOfUsers) {
-            userRepository.saveUser(randomUser())
-        }
-    }
-
-    private fun addNUsersBeforeAndAfterUser(numOfUsers: Int): User {
-        addNUsersToRepository(numOfUsers)
-
-        val userSaved = randomUser()
-        userRepository.saveUser(userSaved)
-
-        addNUsersToRepository(numOfUsers)
-
-        return userSaved
-    }
 
     @Test
     fun test_user_repository_get_user_list_empty_list() = runBlocking {
@@ -66,7 +50,7 @@ class DefaultUserRepositoryTest : BaseTest() {
     @Test
     fun test_user_repository_save_user_more_items_in_list() = runBlocking {
         val numOfUsers = 4
-        addNUsersToRepository(numOfUsers)
+        addNUsersToRepository(userRepository, numOfUsers)
 
         val userToSave = randomUser()
         val dataReceived = userRepository.saveUser(userToSave)
@@ -82,7 +66,7 @@ class DefaultUserRepositoryTest : BaseTest() {
     @Test
     fun test_user_repository_save_user_existing_in_list() = runBlocking {
         val numOfUsers = 3
-        val userSaved = addNUsersBeforeAndAfterUser(numOfUsers)
+        val userSaved = addNUsersBeforeAndAfterUser(userRepository, numOfUsers)
 
         val dataReceived = userRepository.saveUser(
             userSaved.copy(
@@ -123,7 +107,7 @@ class DefaultUserRepositoryTest : BaseTest() {
     @Test
     fun test_user_repository_delete_user_more_in_list() = runBlocking {
         val numOfUsers = 4
-        val userSaved = addNUsersBeforeAndAfterUser(numOfUsers)
+        val userSaved = addNUsersBeforeAndAfterUser(userRepository, numOfUsers)
 
         val dataReceived = userRepository.deleteUser(userSaved)
 

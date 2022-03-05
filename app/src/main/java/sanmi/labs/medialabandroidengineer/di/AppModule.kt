@@ -18,10 +18,22 @@ val appModule = module {
     }
 
     single {
+        GetUsersUseCase(get())
+    }
+
+    single {
+        SaveUserUseCase(get())
+    }
+
+    single {
+        DeleteUserUseCase(get())
+    }
+
+    single {
         UserUseCases(
-            GetUsersUseCase(get()),
-            SaveUserUseCase(get()),
-            DeleteUserUseCase(get()),
+            get(),
+            get(),
+            get(),
         )
     }
 
